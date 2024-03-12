@@ -1,0 +1,79 @@
+:root{
+  --pri-text: white;
+  --pri-color: #0064c8;
+  --pri-hover: #004385;
+  --pri-bg: #e8f4ff;
+  --pri-shadow: #0064c833;
+  --pri-drag: #0064c84D;
+  --black : #282C3B;
+  --red: #d93026;
+  --gray : #8995AD;
+  --holder-gray: #B0BCC8;
+  --bg-gray: #F1F3F5;
+  --bg-gray-light: #F1F3F546;
+  --error: #e00000;
+  --error-bg:#ffeaea;
+  --warning:#ffd813;
+  --warning-bg:#fff9d9;
+  --info:#909399;
+  --info-bg:#F4F4F5;
+  --success:#009431 ;
+  --success-bg:#e4ffed;
+  --rounded-sm : 2px;
+  --rounded-md : 4px;
+  --rounded-lg : 6px;
+}
+
+a {
+    color: var(--pri-color);
+}
+a:active,a:hover {
+    color: var(--pri-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(0 0 0 / 10%);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8a8a8;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #b6b7b9 #f2f2f2; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+}
+
+.scroll-hover::-webkit-scrollbar-thumb {
+  background-color: transparent
+}
+
+.scroll-hover:hover::-webkit-scrollbar-thumb {
+  background-color: #b6b7b9
+}
+
+.scroll-hover::-webkit-scrollbar {
+  width: 6px;
+  height: 6px
+}
+
+.bg-square {
+  background-position: 0 0,5px 5px!important;
+  background-size: 10px 10px!important;
+  background-image: linear-gradient(45deg,#eee 25%,transparent 25%,transparent 75%,#eee 75%,#eee 100%),linear-gradient(45deg,#eee 25%,#fff 25%,#fff 75%,#eee 75%,#eee 100%)!important;
+}

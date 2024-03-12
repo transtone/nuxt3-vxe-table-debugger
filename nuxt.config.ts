@@ -5,6 +5,7 @@ import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  ssr: false,
   app: {
     head: {
       title: 'A Better Nuxt 3 Starter',
@@ -13,20 +14,28 @@ export default defineNuxtConfig({
   },
   modules: [
     '@unocss/nuxt',
+    '@vue-macros/nuxt',
     '@pinia/nuxt',
     'unplugin-icons/nuxt',
     '@vueuse/nuxt'
+  ],
+  css: [
+    '@unocss/reset/tailwind.css',
+    '@/assets/main.css',
+    '@/assets/normal.scss',
+    '@/assets/vxe-cust.scss',
   ],
   vite: {
     plugins: [
       ViteComponents({
         resolvers: [
           IconsResolver({
-            componentPrefix: ''
+            componentPrefix: 'i'
           })
         ],
         dts: true
       })
     ]
-  }
+  },
+  plugins: ['@/plugins/vxe-table'],
 })

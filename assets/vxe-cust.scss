@@ -1,0 +1,467 @@
+.vxe-table,
+.vxe-grid {
+  --vxe-table-row-height-small: 36px;
+  --vxe-table-column-padding-small: 6px 0;
+  --vxe-header-height: 61px;
+  --vxe-table-row-current-background-color: var(--pri-bg);
+  --vxe-table-row-hover-current-background-color: #1e80ff1a;
+  --vxe-table-row-hover-background-color: #1e80ff0d;
+  --vxe-table-row-hover-striped-background-color: #1e80ff0d;
+  --vxe-font-size-small: 12px;
+  --vxe-checkbox-font-size-small: 12px;
+  --vxe-table-header-background-color: var(--bg-gray);
+  --vxe-table-row-striped-background-color: var(--bg-gray-light);
+  // --vxe-table-border-color: #d3dae69b;
+  // --vxe-table-border-radius: 4px;
+  --vxe-table-border-color: var(--bg-gray);
+  --vxe-table-border-vertical-color: #edf0f5;
+  --vxe-loading-color: var(--pri-color);
+}
+
+.vxe-table {
+  --at-apply: text-hex-282C3B font-medium;
+
+  .vxe-table--header-wrapper .vxe-table--header-border-line {
+    border-bottom: none;
+  }
+
+  &.vxe-table--render-default.border--inner .vxe-table--border-line {
+    border-width: 0;
+  }
+
+  &.vxe-table--render-default.border--full .vxe-header--column {
+    --vxe-table-border-color: var(--bg-gray);
+    background-image: linear-gradient(var(--vxe-table-border-vertical-color), var(--vxe-table-border-vertical-color)),
+      linear-gradient(var(--vxe-table-border-color), var(--vxe-table-border-color));
+  }
+}
+
+.vxe-table--render-default {
+  color: #000000d9;
+  font-family:
+    HarmonyOS Sans SC,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    PingFang SC,
+    Hiragino Sans GB,
+    Microsoft YaHei,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol;
+
+  &.border--full {
+    .vxe-header--column,
+    .vxe-body--column,
+    .vxe-footer--column {
+      // --vxe-table-border-color: var(--bg-gray);--vxe-table-border-color
+      --vxe-table-border-color: #d3dae69b;
+      --vxe-table-border-vertical-color: #edf0f5;
+      background-image: linear-gradient(var(--vxe-table-border-vertical-color), var(--vxe-table-border-vertical-color)),
+        linear-gradient(var(--vxe-table-border-color), var(--vxe-table-border-color));
+    }
+  }
+
+  // .vxe-body--row.row--hover {
+  // background-color: unset;
+  // }
+  // .vxe-body--row.row--hover.row--stripe {
+  // background-color: var(--vxe-table-row-striped-background-color);
+  // }
+  // .vxe-body--row.row--hover.row--current {
+  // background-color: var(--vxe-table-row-current-background-color);
+  // }
+  &:not(.border--full) {
+    .vxe-body--row.row--current {
+      .vxe-body--column {
+        // --border-color: #1e80ff46;
+        --border-color: var(--border-color);
+        --vxe-table-border-horizontal-color: var(--border-color);
+        background-image: linear-gradient(var(--border-color), var(--border-color)),
+          linear-gradient(var(--border-color), var(--border-color));
+        background-position:
+          right top,
+          right bottom;
+
+        &:last-child {
+          background-image: linear-gradient(var(--border-color), var(--border-color)),
+            linear-gradient(var(--border-color), var(--border-color)),
+            linear-gradient(var(--border-color), var(--border-color));
+          background-repeat: no-repeat;
+          background-size:
+            100% 1px,
+            100% 1px,
+            1px 100%;
+          // 火狐调优
+          // @supports (-moz-appearance:none) {
+          // background-position: right top,right bottom,right 0.5px bottom;
+          // }
+        }
+
+        &:first-child {
+          background-image: linear-gradient(var(--border-color), var(--border-color)),
+            linear-gradient(var(--border-color), var(--border-color)),
+            linear-gradient(var(--border-color), var(--border-color));
+          background-size:
+            100% 1px,
+            1px 100%,
+            100% 1px;
+          background-position:
+            right top,
+            left bottom,
+            bottom;
+        }
+      }
+    }
+  }
+}
+
+.vxe-cust {
+  .vxe-cell--edit-icon.vxe-icon--edit-outline {
+    display: none;
+  }
+
+  .vxe-body--column,
+  .vxe-header--row {
+    .ant-select-selection-overflow {
+      flex-wrap: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .vxe-table--fixed-right-wrapper.scrolling--middle .fixed-right--wrapper .col--fixed .vxe-resizable,
+  .vxe-table--fixed-left-wrapper.scrolling--middle .fixed-left--wrapper .col--fixed .vxe-resizable {
+    &:before {
+      width: 0;
+    }
+  }
+
+  .vxe-header--column {
+    &.col--ellipsis.col--checkbox > .vxe-cell {
+      justify-content: center;
+    }
+
+    .vxe-checkbox--label {
+      display: none;
+    }
+  }
+
+  .show-header-filter {
+    .vxe-header--column {
+      .vxe-cell {
+        min-height: var(--vxe-header-height);
+        max-height: unset;
+      }
+
+      .vxe-checkbox--label {
+        display: block;
+      }
+    }
+
+    .vxe-header--column.col--ellipsis > .vxe-cell {
+      max-height: unset;
+    }
+  }
+
+  .col--checkbox-linenumber {
+    .vxe-cell {
+      --at-apply: relative block p-0;
+    }
+
+    .vxe-cell--checkbox {
+      .vxe-icon-checkbox-unchecked,
+      .vxe-checkbox--unchecked-icon {
+        &:before {
+          border: none;
+          background: transparent;
+        }
+      }
+
+      .vxe-checkbox--label {
+        --at-apply: absolute left-1/2 whitespace-nowrap pl-0 text-gray;
+        transform: translateX(-50%);
+      }
+
+      &.is--checked {
+        .vxe-checkbox--label {
+          --at-apply: hidden;
+        }
+      }
+    }
+
+    .seq-unchecked {
+      --at-apply: hidden;
+    }
+
+    &:hover {
+      .seq-unchecked {
+        display: block;
+      }
+
+      .vxe-cell--checkbox {
+        .vxe-icon-checkbox-unchecked,
+        .vxe-checkbox--unchecked-icon {
+          &:before {
+            border: 1px solid #dcdfe6;
+            background: #fafbfd;
+          }
+        }
+
+        .vxe-checkbox--label {
+          --at-apply: hidden;
+        }
+      }
+    }
+  }
+
+  .vxe-table--expanded {
+    display: flex;
+  }
+
+  .ant-select-selection-placeholder {
+    text-align: left;
+  }
+
+  .ant-picker:hover,
+  .ant-picker-focused,
+  .ant-select:not(.ant-select-disabled):hover .ant-select-selector,
+  .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector,
+  .ant-input-affix-wrapper:focus,
+  .ant-input-affix-wrapper-focused,
+  .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+    border-color: var(--holder-gray);
+  }
+
+  .ant-picker:hover,
+  .ant-picker-focused,
+  .ant-select-selector,
+  .ant-input-affix-wrapper:focus,
+  .ant-input-affix-wrapper-focused {
+    box-shadow: none !important;
+  }
+
+  .ant-picker,
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector,
+  .ant-input-affix-wrapper-sm {
+    border-color: var(--bg-gray);
+  }
+
+  .ant-input-affix-wrapper-sm {
+    padding-right: 0;
+  }
+}
+
+.vxe-grid.show-header-filter {
+  .vxe-header--column {
+    .vxe-cell {
+      min-height: var(--vxe-header-height);
+
+      .vxe-cell--title {
+        --at-apply: w-full;
+      }
+    }
+
+    &.col--checkbox {
+      .vxe-cell {
+        --at-apply: block;
+
+        .vxe-cell--title {
+          --at-apply: flex items-center justify-center;
+          height: var(--vxe-header-height);
+
+          .vxe-cell--checkbox {
+            --at-apply: flex flex-col-reverse p-0 items-center justify-center;
+
+            .vxe-checkbox--icon {
+              --at-apply: relative h-24px;
+            }
+
+            .vxe-checkbox--label {
+              --at-apply: p-0 pb-6px leading-1em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.vxe-header--column:last-child .vxe-resizable.is--line:before {
+  background: none;
+}
+
+.vxe-table--render-default .vxe-header--column {
+  .is--checked.vxe-cell--checkbox,
+  .is--indeterminate.vxe-cell--checkbox {
+    line-height: unset;
+  }
+}
+
+.is--virtual-y.vxe-table--render-default.size--mini.show-header-filter {
+  .vxe-header--column.col--ellipsis {
+    height: 60px;
+  }
+
+  .vxe-header--column.col--ellipsis > .vxe-cell {
+    max-height: 60px;
+  }
+
+  .vxe-table--fixed-left-wrapper,
+  .vxe-table--fixed-right-wrapper {
+    .vxe-table--header-wrapper.fixed-right--wrapper,
+    .vxe-table--header-wrapper.fixed-left--wrapper {
+      width: 100%;
+
+      table.vxe-table--header {
+        width: calc(100% + 1px) !important;
+      }
+    }
+  }
+}
+
+// >=vxe-table-4.3 版本的 checkbox 使用了图标方式，用老样式还原
+.vxe-table--render-default .vxe-cell--checkbox,
+.vxe-table--render-default .vxe-cell--radio {
+  --at-apply: relative;
+}
+
+.vxe-table--render-default.size--small .vxe-cell--checkbox,
+.vxe-table--render-default.size--small .vxe-cell--radio {
+  --at-apply: text-12px;
+}
+
+.vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--icon {
+  font-size: 15px;
+  --at-apply: w-1em h-1em text-center;
+}
+
+.vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--icon:before {
+  content: "";
+  position: absolute;
+  height: 1em;
+  width: 1em;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 0;
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid var(--bg-gray);
+}
+
+.vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--icon.vxe-icon-checkbox-unchecked,
+.vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--unchecked-icon {
+  display: inline-block;
+}
+
+.vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--checked-icon:after,
+.vxe-table--render-default .vxe-cell--checkbox .vxe-icon-checkbox-checked:after {
+  content: "";
+  position: absolute;
+  height: 0.64em;
+  width: 0.32em;
+  top: 50%;
+  left: 50%;
+  border: 2px solid #fff;
+  border-left: 0;
+  border-top: 0;
+  transform: translate(-50%, -65%) rotate(45deg);
+}
+
+.vxe-table--render-default .vxe-cell--checkbox .vxe-icon-checkbox-indeterminate {
+  --at-apply: inline-block;
+
+  &:after {
+    content: "" !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 2px;
+    width: 0.6em;
+    background-color: #fff;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.vxe-table--render-default .is--checked .vxe-checkbox--label,
+.vxe-table--render-default .is--indeterminate .vxe-checkbox--label {
+  color: #343741;
+}
+
+.vxe-table--render-default .is--checked.vxe-cell--checkbox .vxe-icon-checkbox-unchecked,
+.vxe-table--render-default .is--indeterminate.vxe-cell--checkbox .vxe-icon-checkbox-unchecked,
+.vxe-table--render-default .is--checked.vxe-cell--checkbox .vxe-checkbox--unchecked-icon,
+.vxe-table--render-default .is--indeterminate.vxe-cell--checkbox .vxe-checkbox--unchecked-icon {
+  display: none;
+}
+
+.vxe-table--render-default .is--checked.vxe-cell--checkbox .vxe-checkbox--icon:before,
+.vxe-table--render-default .is--indeterminate.vxe-cell--checkbox .vxe-checkbox--icon:before {
+  border-color: var(--pri-color);
+  background-color: var(--pri-color);
+}
+
+.vxe-table--render-default .is--checked.vxe-cell--checkbox .vxe-checkbox--checked-icon {
+  display: inline-block;
+}
+
+.vxe-table--render-default .is--indeterminate.vxe-cell--checkbox .vxe-checkbox--indeterminate-icon {
+  display: inline-block;
+}
+
+.vxe-table--render-default .vxe-cell--checkbox:not(.is--disabled):hover .vxe-checkbox--icon:before {
+  border-color: var(--pri-color);
+}
+
+.vxe-table--render-default .is--disabled.vxe-cell--checkbox {
+  cursor: not-allowed;
+  color: #bfbfbf;
+}
+
+.vxe-table--render-default .is--disabled.vxe-cell--checkbox .vxe-checkbox--icon:before {
+  border-color: #dcdfe6;
+  background-color: #f3f3f3;
+}
+
+.vxe-table--render-default .is--disabled.vxe-cell--checkbox .vxe-checkbox--icon:after {
+  border-color: #c0c4cc;
+}
+
+.vxe-table--render-default .vxe-cell--checkbox .vxe-checkbox--icon.vxe-icon-checkbox-checked {
+  display: inline-block;
+}
+
+.vxe-table--render-default.size--small .vxe-body--column {
+  line-height: unset;
+}
+
+.vxe-table--body-wrapper.fixed-left--wrapper,
+.vxe-table--body-wrapper.fixed-right--wrapper,
+.vxe-table--body-wrapper.body--wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #b6b7b9 #f2f2f2; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #e1e3e5;
+    // background-color: var(--vxe-table-header-background-color);background-color
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    // background-color: #b6b7b9;background-color
+    background-color: #a1a3a5;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--vxe-table-header-background-color);
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+}

@@ -1,0 +1,145 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+  overflow-x: hidden !important;
+}
+
+.link-light {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clearfix::after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.pspace-modal {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.text-center-p {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-center-v-p {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// 因为样式权重，必须放在这里，放在vxe-cust中编译后不生效。
+.vxe-grid.is--loading::before {
+  background: none !important;
+}
+
+.vxe-loading {
+  background-color: #ffffff80 !important;
+}
+
+.content-wrapper {
+  background-color: #f6f7f8;
+}
+
+.anticon svg {
+  vertical-align: initial;
+}
+
+.text-center-x {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.text-center-y {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.transform-x-50 {
+  transform: translateX(-50%);
+}
+
+.transform-y-50 {
+  transform: translateY(-50%);
+}
+
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
+
+.border-base {
+  border-style: solid;
+  border-color: #dcdee2;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+html:not(.dark) .accent,
+.dark .tagline {
+  background: linear-gradient(315deg, rgb(210 86 53) 10%, #647eff 50%, rgb(238 224 112) 90%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  animation: gradient 12s ease infinite;
+}
+
+i {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+a.hl {
+  --at-apply: cursor-pointer;
+
+  &:hover {
+    --at-apply: relative text-[var(--pri-hover)];
+
+    &:after {
+      content: "";
+      --at-apply: block absolute b-b-1px b-b-[var(--pri-hover)] w-full;
+    }
+  }
+  &.del {
+    color: var(--error);
+    &:hover {
+      color: var(--error);
+      &:after {
+        border-bottom-color: var(--error);
+      }
+    }
+  }
+}
