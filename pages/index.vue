@@ -10,16 +10,23 @@
                    :keep-source="keepSource" :edit-config="editConfig" :data-loading="dataLoading"
                    :col-def="colDef" :row-data="rowData" @grid-events="handleGridEvents" @update-row-data="handleUpdateRowData">
       <template #operation="{ row, column }">
-        <slot name="operation" :row="row" :column="column" />
+        <div class="flex items-center space-x-16px">
+          <a class="hl" @click="handleEditRow(row)">编辑</a>
+          <el-popconfirm width="auto" title="确定要删除该接口吗？" ok-text="确定" cancel-text="取消"
+                         placement="bottom-end" @confirm="handleDeleteRow(row)">
+            <template #reference>
+              <a class="hl del">删除</a>
+            </template>
+          </el-popconfirm>
+        </div>
       </template>
       <!-- 自定义多行操作按钮 -->
       <template #multi_action>
         <slot name="multi_action">
           <template v-if="showMultiDel && checkedRows.length>0">
-            {{ checkedRows.length }}
-            <!-- <el-badge :value="checkedRows.length" type="info">
+            <el-badge :value="checkedRows.length" type="info">
               <el-button size="small" type="danger" plain @click="handleDelChecked">删除选中</el-button>
-            </el-badge> -->
+            </el-badge>
           </template>
         </slot>
       </template>
@@ -91,6 +98,13 @@ let dataLoading = $ref(false)
 const handleGridEvents = (e) => {
   // console.log(e)
 }
+const handleEditRow = (row) => {
+
+}
+const handleDeleteRow = (row) => {
+
+}
+
 // 模拟接口
 const findList = () => {
   return new Promise(resolve => {

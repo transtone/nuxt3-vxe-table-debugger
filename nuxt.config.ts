@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'unplugin-icons/nuxt',
     '@vueuse/nuxt',
+    '@element-plus/nuxt',
   ],
   css: [
     '@unocss/reset/tailwind.css',
@@ -26,6 +27,13 @@ export default defineNuxtConfig({
     '@/assets/vxe-cust.scss',
   ],
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/ele-cust.scss" as element;',
+        },
+      },
+    },
     plugins: [
       ViteComponents({
         resolvers: [
@@ -37,5 +45,6 @@ export default defineNuxtConfig({
       }),
     ],
   },
+  elementPlus: { importStyle: 'scss' },
   plugins: ['@/plugins/vxe-table'],
 })

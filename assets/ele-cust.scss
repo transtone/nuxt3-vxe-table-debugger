@@ -1,0 +1,48 @@
+// aliyun 配色风格
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": #0064c8
+    ),
+    "success": (
+      "base": #009431
+    ),
+    "warning": (
+      "base": #ffd813
+    ),
+    "danger": (
+      "base": #e00000
+    ),
+    "error": (
+      "base": #e00000
+    )
+  ),
+  $border-radius: (
+    "base": 2px
+  ),
+  $font-size: (
+    "large": 18px,
+    "medium": 14px,
+    "base": 12px,
+    "small": 12px
+  ),
+  $button-padding-vertical: (
+    "default": 7px,
+    "small": 4px
+  ),
+  $font-family: (
+    "":
+      "'HarmonyOS Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
+  )
+);
+
+.el-dropdown:focus-visible,
+.el-tooltip__trigger:focus-visible {
+  outline: 1px dashed var(--pri-color);
+}
+
+.el-button {
+  .is-plain {
+    --at-apply: cursor-pointer;
+  }
+}

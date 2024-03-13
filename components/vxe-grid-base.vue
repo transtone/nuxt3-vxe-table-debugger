@@ -67,7 +67,7 @@
       <div class="multi_action min-w-100px">
         <slot name="multi_action" />
       </div>
-      <!-- <el-pagination class="ant-row" show-size-changer size="small" :total="total*1" :page-size="pageSize"
+      <el-pagination class="ant-row" show-size-changer size="small" :total="total*1" :page-size="pageSize"
                      :page-size-options="pageSizeOptsShow" :show-total="total => ` 共 ${total} 条`"
                      @change="handlePageChange"
                      @show-size-change="handlePageSizeChange">
@@ -75,7 +75,7 @@
           <span v-if="pages.value !== total.toString()">{{ pages.value }}条/页</span>
           <span v-else>全部</span>
         </template>
-      </el-pagination> -->
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -220,36 +220,36 @@ const handleHeaderSort = item => {
   fnLoadData()
 }
 
-// let pageSize = $ref(50)
+let pageSize = $ref(50)
 
-// const pageSizeOpts = ['50', '100', '500', '2000']
+const pageSizeOpts = ['50', '100', '500', '2000']
 
-// const pageSizeOptsShow = $computed(() => {
-//   if (total < 1) {
-//     return ['50']
-//   }
-//   const sizeOpts = pageSizeOpts.filter(e => Number(e) < total)
-//   return [...sizeOpts, total.toString()].sort((a, b) => {
-//     return Number(a) > Number(b) ? 1 : -1
-//   })
-// })
+const pageSizeOptsShow = $computed(() => {
+  if (total < 1) {
+    return ['50']
+  }
+  const sizeOpts = pageSizeOpts.filter(e => Number(e) < total)
+  return [...sizeOpts, total.toString()].sort((a, b) => {
+    return Number(a) > Number(b) ? 1 : -1
+  })
+})
 
 // 页码切换事件
-// const handlePageChange = (page, pageSize) => {
-//   const limit = pageSize
-//   const offset = (page - 1) * pageSize
-//   fnGetData(limit, offset)
-// }
+const handlePageChange = (page, pageSize) => {
+  const limit = pageSize
+  const offset = (page - 1) * pageSize
+  fnGetData(limit, offset)
+}
 
-// const handlePageSizeChange = (current, size) => {
-//   pageSize = size
-// }
+const handlePageSizeChange = (current, size) => {
+  pageSize = size
+}
 
 const getVxeGridInst = () => {
   return xGrid
 }
 // 行选择事件
-const handleCheckboxChange = async (row) => {
+const handleCheckboxChange = debounce(async(row) => {
   if (props.checkOneRow) {
     const checkable = xGrid.isCheckedByCheckboxRow(row)
     await xGrid.clearCheckboxRow()
@@ -259,7 +259,8 @@ const handleCheckboxChange = async (row) => {
   }
   const checkedRows = xGrid.getCheckboxRecords()
   emit('grid-events', { event: 'checkboxOne', params: { records: checkedRows }, name: '复选框单选切换' })
-}
+}, 10)
+
 // 表格刷新
 const fnRefresh = async () => {
   // 由于固定列的动态切换是无状态的，所以需要手动刷新滚动位置
@@ -272,9 +273,9 @@ const fnRefresh = async () => {
 const offsetShow = computed(() => {
   return props.rowData?.offset ?? 0
 })
-// const total = $computed(() => {
-//   return props.rowData.total ? props.rowData.total : 0
-// })
+const total = $computed(() => {
+  return props.rowData.total ? props.rowData.total : 0
+})
 
 const gridOptions = reactive({
   size: props.size,

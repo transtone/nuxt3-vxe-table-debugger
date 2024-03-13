@@ -13,6 +13,7 @@
     "p:up": "pnpm up"
   },
   "devDependencies": {
+    "@element-plus/nuxt": "^1.0.7",
     "@iconify/json": "^2.2.191",
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-config": "^12.0.0",
@@ -34,9 +35,11 @@
     "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-scss": "^6.2.1",
     "unplugin-icons": "^0.18.5",
-    "unplugin-vue-components": "^0.26.0"
+    "unplugin-vue-components": "^0.26.0",
+    "vxe-table-plugin-element": "^4.0.0"
   },
   "dependencies": {
+    "element-plus": "^2.6.1",
     "pinia": "^2.1.7",
     "vue-i18n": "^9.10.1",
     "vxe-table": "^4.5.21",
