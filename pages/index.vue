@@ -89,7 +89,7 @@ const handleUpdateRowData = (data) => {
 }
 let dataLoading = $ref(false)
 const handleGridEvents = (e) => {
-  console.log(e)
+  // console.log(e)
 }
 // 模拟接口
 const findList = () => {

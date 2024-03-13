@@ -4,20 +4,20 @@ import ViteComponents from 'unplugin-vue-components/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   ssr: false,
   app: {
     head: {
-      title: 'A Better Nuxt 3 Starter',
-      link: [{ rel: 'icon', type: 'image/*', href: '/favicon.svg' }]
-    }
+      title: 'vxe-grid debug',
+      link: [{ rel: 'icon', type: 'image/*', href: '/favicon.svg' }],
+    },
   },
   modules: [
     '@unocss/nuxt',
     '@vue-macros/nuxt',
     '@pinia/nuxt',
     'unplugin-icons/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
   css: [
     '@unocss/reset/tailwind.css',
@@ -30,12 +30,12 @@ export default defineNuxtConfig({
       ViteComponents({
         resolvers: [
           IconsResolver({
-            componentPrefix: 'i'
-          })
+            componentPrefix: 'i',
+          }),
         ],
-        dts: true
-      })
-    ]
+        dts: true,
+      }),
+    ],
   },
   plugins: ['@/plugins/vxe-table'],
 })
