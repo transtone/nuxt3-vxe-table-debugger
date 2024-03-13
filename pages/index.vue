@@ -79,7 +79,7 @@ let rowData = $ref({
     { id: 10008, name: 'Test8', nickname: 'T8', role: 'Develop', sex: 'Man', age: 35, address: 'test abc' },
     { id: 10009, name: 'Test9', nickname: 'T9', role: 'Develop', sex: 'Man', age: 35, address: 'Shenzhen' },
     { id: 100010, name: 'Test10', nickname: 'T10', role: 'Develop', sex: 'Man', age: 35, address: 'Guangzhou' },
-  ], limit: 0, offset: 0, total: 0,
+  ], limit: 50, offset: 0, total: 100,
 })
 // 更新数据
 const handleUpdateRowData = (data) => {
@@ -112,12 +112,12 @@ const findList = () => {
   })
 }
 const colDef = [
-  { type: 'checkbox', width: 50 },
-  { type: 'seq', width: 60 },
-  { field: 'name', title: 'Name' },
-  { field: 'nickname', title: 'Nickname' },
-  { field: 'role', title: 'Role' },
-  { field: 'address', title: 'Address', showOverflow: true },
+  // { type: 'checkbox', width: 50 },
+  // { type: 'seq', width: 60 },
+  { fieldName: 'name', description: 'Name' },
+  { fieldName: 'nickname', description: 'Nickname' },
+  { fieldName: 'role', description: 'Role' },
+  { fieldName: 'address', description: 'Address', showOverflow: true },
 ]
 
 const gridOptions = reactive({

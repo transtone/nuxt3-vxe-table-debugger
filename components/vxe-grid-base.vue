@@ -272,9 +272,9 @@ const fnRefresh = async () => {
 const offsetShow = computed(() => {
   return props.rowData?.offset ?? 0
 })
-const total = $computed(() => {
-  return props.rowData.total ? props.rowData.total : 0
-})
+// const total = $computed(() => {
+//   return props.rowData.total ? props.rowData.total : 0
+// })
 
 const gridOptions = reactive({
   size: props.size,
@@ -305,7 +305,11 @@ watchEffect(() => {
 watch(() => props.treeConfig, async (val) => {
 }, { immediate: true, deep: true })
 
-watch(() => props.colDef, async (val) => {
+watch(() => props.colDef, val => {
+  fnLoadCol(val)
+}, { deep: true })
+
+const fnLoadCol = async (val = props.colDef) => {
   const checkbox = {
     field: null,
     title: '序号',
@@ -367,7 +371,7 @@ watch(() => props.colDef, async (val) => {
       editedRows = []
     }
   })
-}, { immediate: true, deep: true })
+}
 watch(() => props.rowData, () => {
   fnLoadData()
 }, { deep: true })
@@ -419,9 +423,13 @@ const handleEditClosed = ({ row, column }) => {
 const fnGetData = (limit = pageSize, offset = 0) => {
   emit('update-row-data', { limit, offset, colFilter: tableParams })
 }
+watchOnce($$(xGrid), async (e) => {
+  await fnLoadCol()
+  fnLoadData()
+})
 onMounted(() => {
   // 就绪后触发数据更新，以保证所有条件最新
-  fnLoadData()
+  // fnLoadData()
 })
 
 defineExpose({ getVxeGridInst, fnRefresh, fnGetData, fnLoadData, xGrid: $$(xGrid), showSettings })
