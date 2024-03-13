@@ -89,7 +89,7 @@ const props = defineProps({
   fixedHeight: Number,
   cellHeight: { type: String, default: 'auto' },
   sWidth: { type: Number, default: 50 },
-  spaceFix: { type: Number, default: 60 },
+  spaceFix: { type: Number, default: 80 },
   operationWidth: { type: Number, default: 110 },
   autoResize: { type: Boolean, default: false },
   hidePager: { type: Boolean, default: false },
@@ -183,7 +183,6 @@ const showSettings = () => {
   emit('grid-events', { event: 'showSettings', name: '表头设置' })
 }
 
-let tempInput = $ref({})
 let tableParams = $ref({})
 const fnIsMainOrder = item => {
   if (isNilOrEmpty(tableParams['@order'])) {
@@ -221,30 +220,30 @@ const handleHeaderSort = item => {
   fnLoadData()
 }
 
-let pageSize = $ref(50)
+// let pageSize = $ref(50)
 
-const pageSizeOpts = ['50', '100', '500', '2000']
+// const pageSizeOpts = ['50', '100', '500', '2000']
 
-const pageSizeOptsShow = $computed(() => {
-  if (total < 1) {
-    return ['50']
-  }
-  const sizeOpts = pageSizeOpts.filter(e => Number(e) < total)
-  return [...sizeOpts, total.toString()].sort((a, b) => {
-    return Number(a) > Number(b) ? 1 : -1
-  })
-})
+// const pageSizeOptsShow = $computed(() => {
+//   if (total < 1) {
+//     return ['50']
+//   }
+//   const sizeOpts = pageSizeOpts.filter(e => Number(e) < total)
+//   return [...sizeOpts, total.toString()].sort((a, b) => {
+//     return Number(a) > Number(b) ? 1 : -1
+//   })
+// })
 
 // 页码切换事件
-const handlePageChange = (page, pageSize) => {
-  const limit = pageSize
-  const offset = (page - 1) * pageSize
-  fnGetData(limit, offset)
-}
+// const handlePageChange = (page, pageSize) => {
+//   const limit = pageSize
+//   const offset = (page - 1) * pageSize
+//   fnGetData(limit, offset)
+// }
 
-const handlePageSizeChange = (current, size) => {
-  pageSize = size
-}
+// const handlePageSizeChange = (current, size) => {
+//   pageSize = size
+// }
 
 const getVxeGridInst = () => {
   return xGrid
@@ -256,7 +255,6 @@ const handleCheckboxChange = async (row) => {
     await xGrid.clearCheckboxRow()
     xGrid.setCheckboxRow(row, !checkable)
   } else {
-    debugger
     await xGrid.toggleCheckboxRow(row)
   }
   const checkedRows = xGrid.getCheckboxRecords()
@@ -337,10 +335,6 @@ watch(() => props.colDef, async (val) => {
     }
     return e
   }).filter(e => !e.hide).map(e => {
-    let defaultSlot = {}
-    if (!e.readonly) {
-      defaultSlot.edit = 'edit_cell'
-    }
     let a = {
       field: e.fieldName,
       title: e.alias ? e.alias : e.fieldName,
@@ -350,7 +344,6 @@ watch(() => props.colDef, async (val) => {
       type: e.showType === 'expand' ? 'expand' : null,
       fixed: e.pinned,
       editRender: e.readonly ? null : { autofocus: '.ant-input' },
-      slots: { header: 'search_header', ...defaultSlot },
       treeNode: e.treeNode === true,
       params: e,
       showOverflow: isNil(e.showOverflow),
